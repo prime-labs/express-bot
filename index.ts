@@ -8,6 +8,7 @@ import { string } from "yup";
 const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
 const SMTP_EXPRESS_SECRET = process.env.PROJECT_SECRET;
 const HTML_CONVERTER_API_KEY = process.env.HTML_CONVERTER_API_KEY;
+const MONGODB_DATABASE_CONN = process.env.MONGODB_DATABASE_CONN;
 
 if (!DISCORD_TOKEN) {
   throw new Error(
@@ -27,10 +28,14 @@ if (!HTML_CONVERTER_API_KEY) {
   );
 }
 
+if (!MONGODB_DATABASE_CONN) {
+  throw new Error(
+    "Cannot initialize bot without mongo db connection string. Set your Environment variable"
+  );
+}
+
 console.log("Connecting to mongodb...");
-const connection = mongoose.createConnection(
-  "mongodb+srv://devtenotea:ld0v3jTD2xIXt7I9@cluster0.k9lovmo.mongodb.net/?retryWrites=true&w=majority"
-);
+const connection = mongoose.createConnection(MONGODB_DATABASE_CONN);
 console.log("Connection established");
 
 const ticketSchema = new mongoose.Schema({
@@ -289,7 +294,7 @@ See you there!!`,
               
                     .attendee {
                       padding: 40px 60px;
-                      width: 350px;
+                      width: 400px;
                       flex-shrink: 0;
                       border-left: 2px dashed rgba(255, 255, 255, 0.17);
                     }
@@ -303,7 +308,7 @@ See you there!!`,
                     }
               
                     .attendee h2 {
-                      font-size: 34px;
+                      font-size: 32px;
                       margin-top: 24px;
                     }
               
