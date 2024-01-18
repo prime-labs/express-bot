@@ -107,7 +107,7 @@ manager.on(WebSocketShardEvents.Dispatch, async (event) => {
         discordDMChannelId: response.id,
         discordUserId: user?.id,
         username: user?.username,
-        name: user?.global_name,
+        name: user?.global_name || user?.username,
       });
       userTicket = await ticketInstance.save();
       console.log("Record saved.");
@@ -431,7 +431,7 @@ See you there!!`,
                         alt=""
                       />
                       <h2>
-                        ${event.data.d.author.username}
+                        ${existingTicket.name}
               
                         <svg
                           width="24"
