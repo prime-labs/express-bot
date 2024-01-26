@@ -500,7 +500,7 @@ See you there!!`,
             name: "Tenotea from SMTP Express",
           },
           recipients: {
-            name: ticketInstance!.name!,
+            name: ticketInstance!.name! || ticketInstance?.username!,
             email: ticketInstance!.emailAddress!,
           },
           calendarEvent: {
@@ -515,7 +515,7 @@ See you there!!`,
           template: {
             id: "uJInmhVtnG9rthHcuDdvq",
             variables: {
-              username: ticketInstance!.name!,
+              username: ticketInstance?.name! || ticketInstance?.username!,
             },
           },
           attachments: [
